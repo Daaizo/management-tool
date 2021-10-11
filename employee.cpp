@@ -1,15 +1,16 @@
 #include "employee.h"
-//int Employee::how_many = 0;
+
+
 Employee::Employee()
 {
-   // how_many++;
+
     cout<<"\nrecord successfully created\n";
 }
 void Employee::add_employee(string n, string l,string j, int a)
 {
-    name =  n;
-    last_name = l;
-    age = a;
-    job = j;
-
+    this->age = a;
+    this->job = j;
+    this->last_name = l;
+    this->name = n;
+    how_many++;
 }

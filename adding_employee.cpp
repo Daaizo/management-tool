@@ -7,6 +7,7 @@ Adding_employee::Adding_employee(QWidget *parent) :
     ui(new Ui::Adding_employee)
 {
     ui->setupUi(this);
+    this->setStyleSheet("background: rgb(74,89,98);    border-radius: 0px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
     ui->Job->addItem("Scheduler" );
     ui->Job->addItem("Customer service representative" );
     ui->Job->addItem("Accounts payable clerk" );
@@ -34,29 +35,39 @@ void Adding_employee::on_Clear_clicked()
 #include <iostream>
 #include "employee.h"
 #include <string>
+#include <fstream>
 using namespace std;
 void Adding_employee::on_Save_clicked()
 {
-   // Employee *list = new Employee ;
+    ofstream outdata;
     QString n, ln, a ,j;
     j = ui->Job->currentText();
     n = ui->Name->toPlainText();
     ln = ui->Last_name->toPlainText();
     a = ui->Age->text();
-   // int age = a.toInt();
     if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
     {
         cout << "\nname : " << n.toUtf8().constData();
         cout << "\nlast name : " << ln.toUtf8().constData();
         cout << "\nage : " << a.toUtf8().constData();
         cout << "\njob : " << j.toUtf8().constData();
-        //list[Employee::how_many].add_employee(n.toUtf8().constData(),ln.toUtf8().constData() , j.toUtf8().constData(), age);
+        outdata.open("data_base.txt",ios::app);
+        if(!outdata)
+        {
+            cout << " some error occured !";
+        }
+        else
+        {
+            outdata << n.toUtf8().constData() << ";";
+            outdata << ln.toUtf8().constData() << ";";
+            outdata << a.toUtf8().constData() << ";";
+            outdata << j.toUtf8().constData() << ";" << endl;
+            outdata.close();
+        }
         close();
     }
     else
     {
        show_Error_msg();
     }
-
-
 }
