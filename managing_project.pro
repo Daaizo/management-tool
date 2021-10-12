@@ -12,16 +12,19 @@ SOURCES += \
     adding_employee.cpp \
     employee.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    showing_employee.cpp
 
 HEADERS += \
     adding_employee.h \
     employee.h \
-    mainwindow.h
+    mainwindow.h \
+    showing_employee.h
 
 FORMS += \
     adding_employee.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    showing_employee.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

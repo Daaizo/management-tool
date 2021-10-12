@@ -8,6 +8,7 @@ Adding_employee::Adding_employee(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setStyleSheet("background: rgb(74,89,98);    border-radius: 0px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
+    this->setFixedSize(482,324);
     ui->Job->addItem("Scheduler" );
     ui->Job->addItem("Customer service representative" );
     ui->Job->addItem("Accounts payable clerk" );
@@ -63,6 +64,7 @@ void Adding_employee::on_Save_clicked()
             outdata << a.toUtf8().constData() << ";";
             outdata << j.toUtf8().constData() << ";" << endl;
             outdata.close();
+            Employee::how_many++;
         }
         close();
     }

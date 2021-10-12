@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Adding employee</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icon.gif</normaloff>../icon.gif</iconset>
   </property>
   <widget class="QPushButton" name="Clear">
    <property name="geometry">

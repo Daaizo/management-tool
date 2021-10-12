@@ -14,8 +14,9 @@ public:
     string job;
     void add_employee(string, string ,string , int);
     ~Employee();
-
     Employee();
+    static void show_employee(Employee *);
+    Employee* load_employee();
 
 };
 
