@@ -126,6 +126,13 @@
     <bool>false</bool>
    </property>
   </widget>
+  <zorder>label</zorder>
+  <zorder>Name</zorder>
+  <zorder>Last_name</zorder>
+  <zorder>Save</zorder>
+  <zorder>Job</zorder>
+  <zorder>Age</zorder>
+  <zorder>Clear</zorder>
  </widget>
  <resources/>
  <connections/>

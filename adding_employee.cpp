@@ -59,12 +59,12 @@ void Adding_employee::on_Save_clicked()
         }
         else
         {
-            outdata << n.toUtf8().constData() << ";";
+            outdata  << n.toUtf8().constData() << ";";
             outdata << ln.toUtf8().constData() << ";";
             outdata << a.toUtf8().constData() << ";";
-            outdata << j.toUtf8().constData() << ";" << endl;
+            outdata << j.toUtf8().constData() << ";";
             outdata.close();
-            Employee::how_many++;
+
         }
         close();
     }

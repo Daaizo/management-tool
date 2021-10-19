@@ -15,6 +15,7 @@ public:
     explicit showing_employee(QWidget *parent = nullptr);
     ~showing_employee();
 
+
 private:
     Ui::showing_employee *ui;
 };
