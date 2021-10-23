@@ -19,11 +19,8 @@ public:
 public slots:
     void on_Save_clicked();
     void show_Error_msg();
-
 private slots:
     void on_Clear_clicked();
-
-
 
 private:
     Ui::Adding_employee *ui;

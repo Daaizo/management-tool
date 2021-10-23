@@ -10,18 +10,24 @@ CONFIG += c++11
 
 SOURCES += \
     adding_employee.cpp \
+    changing_employee.cpp \
     employee.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    showing_employee.cpp
 
 HEADERS += \
     adding_employee.h \
+    changing_employee.h \
     employee.h \
-    mainwindow.h
+    mainwindow.h \
+    showing_employee.h
 
 FORMS += \
     adding_employee.ui \
-    mainwindow.ui
+    changing_employee.ui \
+    mainwindow.ui \
+    showing_employee.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

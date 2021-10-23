@@ -11,9 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Adding employee</string>
   </property>
-  <widget class="QPushButton" name="pushButton_2">
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.gif</normaloff>icon.gif</iconset>
+  </property>
+  <widget class="QPushButton" name="Clear">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -29,10 +33,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>10</y>
+     <x>70</x>
+     <y>20</y>
      <width>321</width>
-     <height>91</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
@@ -44,15 +48,21 @@
    <property name="text">
     <string>New Employee</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
   </widget>
   <widget class="QTextEdit" name="Name">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>120</y>
+     <x>40</x>
+     <y>100</y>
      <width>371</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="tabChangesFocus">
+    <bool>true</bool>
    </property>
    <property name="placeholderText">
     <string>Name</string>
@@ -61,30 +71,20 @@
   <widget class="QTextEdit" name="Last_name">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>170</y>
+     <x>40</x>
+     <y>140</y>
      <width>371</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="tabChangesFocus">
+    <bool>true</bool>
    </property>
    <property name="placeholderText">
     <string>Last name</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="Age">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>220</y>
-     <width>371</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="placeholderText">
-    <string>Age</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="Save">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -97,6 +97,45 @@
     <string>Save</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="Job">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>220</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Age">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>180</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="maxLength">
+    <number>32767</number>
+   </property>
+   <property name="placeholderText">
+    <string>Age</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>Name</zorder>
+  <zorder>Last_name</zorder>
+  <zorder>Save</zorder>
+  <zorder>Job</zorder>
+  <zorder>Age</zorder>
+  <zorder>Clear</zorder>
  </widget>
  <resources/>
  <connections/>
