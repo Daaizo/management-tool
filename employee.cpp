@@ -48,13 +48,6 @@ void Employee::count_employees()
     }
     Employee::how_many = line_count/4;
 
-
-
-
-}
-void Employee::show_employee(Employee *tab_of_emp)
-{
-
 }
 
 void Employee::load_employee(Employee* &tab)
@@ -126,8 +119,6 @@ void Employee::load_employee(Employee* &tab)
         }
         else var += i;
     }
-
-
 
 }
 
