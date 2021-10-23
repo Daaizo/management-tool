@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../icon.gif</normaloff>../icon.gif</iconset>
+    <normaloff>icon.gif</normaloff>icon.gif</iconset>
   </property>
   <widget class="QPushButton" name="Clear">
    <property name="geometry">
@@ -33,10 +33,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>0</y>
+     <x>70</x>
+     <y>20</y>
      <width>321</width>
-     <height>91</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
@@ -47,6 +47,9 @@
    </property>
    <property name="text">
     <string>New Employee</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
   <widget class="QTextEdit" name="Name">
