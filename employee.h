@@ -20,6 +20,7 @@ class Employee
         string name;
         string last_name;
         string job;
+        string id;
 
 
 
