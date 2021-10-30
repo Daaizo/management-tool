@@ -20,6 +20,7 @@ Adding_employee::Adding_employee(QWidget *parent) :
 void Adding_employee::show_Error_msg()
 {
     msg.critical(nullptr, "Error" ,"Fill all blanks before saving");
+   // msg.setWindowIcon();
 }
 Adding_employee::~Adding_employee()
 {
@@ -48,14 +49,11 @@ void Adding_employee::on_Save_clicked()
     a = ui->Age->text();
     if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
     {
-        cout << "\nname : " << n.toUtf8().constData();
-        cout << "\nlast name : " << ln.toUtf8().constData();
-        cout << "\nage : " << a.toUtf8().constData();
-        cout << "\njob : " << j.toUtf8().constData();
+
         outdata.open("data_base.txt",ios::app);
         if(!outdata)
         {
-            cout << " some error occured !";
+            msg.critical(nullptr, "ERROR", "there was an error with data base");
         }
         else
         {

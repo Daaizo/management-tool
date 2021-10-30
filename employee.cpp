@@ -7,8 +7,6 @@ int Employee::how_many = 0;
 
 Employee::Employee()
 {
-
-    cout<<"\nrecord successfully created\n";
 }
 
 Employee::~Employee()
