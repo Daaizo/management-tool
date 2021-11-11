@@ -137,6 +137,14 @@
   <zorder>Age</zorder>
   <zorder>Clear</zorder>
  </widget>
+ <tabstops>
+  <tabstop>Name</tabstop>
+  <tabstop>Last_name</tabstop>
+  <tabstop>Age</tabstop>
+  <tabstop>Job</tabstop>
+  <tabstop>Save</tabstop>
+  <tabstop>Clear</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

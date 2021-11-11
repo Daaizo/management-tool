@@ -67,6 +67,9 @@
          <height>31</height>
         </rect>
        </property>
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
        <property name="placeholderText">
         <string/>
        </property>
@@ -79,6 +82,9 @@
          <width>561</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="tabChangesFocus">
+        <bool>true</bool>
        </property>
        <property name="placeholderText">
         <string>type id of employee</string>
@@ -93,6 +99,9 @@
          <height>31</height>
         </rect>
        </property>
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
        <property name="placeholderText">
         <string/>
        </property>
@@ -106,6 +115,9 @@
          <height>31</height>
         </rect>
        </property>
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
        <property name="placeholderText">
         <string/>
        </property>
@@ -118,6 +130,9 @@
          <width>561</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="tabChangesFocus">
+        <bool>true</bool>
        </property>
        <property name="placeholderText">
         <string/>
@@ -206,6 +221,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>search</tabstop>
+  <tabstop>search_button</tabstop>
+  <tabstop>name</tabstop>
+  <tabstop>last_name</tabstop>
+  <tabstop>age</tabstop>
+  <tabstop>job</tabstop>
+  <tabstop>save_button</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>delete_button</tabstop>
+  <tabstop>delete_all_button</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

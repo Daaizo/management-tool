@@ -3,6 +3,8 @@
 #include "employee.h"
 #include <string>
 #include <fstream>
+#include <algorithm>
+#include <sstream>
 changing_employee::changing_employee(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::changing_employee)
@@ -29,43 +31,39 @@ void changing_employee::on_search_button_clicked()
     ui->age->clear();
     ui->job->clear();
     QString id = ui->search->toPlainText();
-    int x = id.toInt() ;
-    if(Employee::how_many)
+    if(!id.toStdString().empty())
     {
-       if(x < 0 ||  x> Employee::how_many)
-       {
-           msg.critical(nullptr, "Error", "there is no matching id in data base, try again");
-       }
-       else
-       {
-           ui->name->setText(QString::fromStdString(tab_of_employees[x].name));
-           ui->last_name->setText(QString::fromStdString(tab_of_employees[x].last_name));
-           ui->age->setText(QString::fromStdString(tab_of_employees[x].age));
-           ui->job->setText(QString::fromStdString(tab_of_employees[x].job));
+        int x = id.toInt() ;
+        if(Employee::how_many)
+        {
+           if(x < 0 ||  x>= Employee::how_many)
+           {
+               msg.critical(nullptr, "Error", "there is no matching id in data base, try again");
+           }
+           else
+           {
+               ui->name->setText(QString::fromStdString(tab_of_employees[x].name));
+               ui->last_name->setText(QString::fromStdString(tab_of_employees[x].last_name));
+               ui->age->setText(QString::fromStdString(tab_of_employees[x].age));
+               ui->job->setText(QString::fromStdString(tab_of_employees[x].job));
+           }
 
-       }
-
+        }
+        else
+        {
+           msg.information(nullptr, "Information", "Data base is empty");
+        }
     }
-    else
-    {
-       msg.information(nullptr, "Information", "Data base is empty");
-    }
-
-
-
-
 
 }
 
 void changing_employee::on_save_button_clicked()
 {
-    msg.setText("The data has been modified");
-    msg.setInformativeText("Do you want to save your changes?");
-    msg.icon();
-    msg.standardButtons();
+
     QString id = ui->search->toPlainText();
+
     int x = id.toInt();
-    cout << x << "from save";
+
     QString n,ln,a,j;
     ofstream outdata;
     n = ui->name->toPlainText();
@@ -77,10 +75,11 @@ void changing_employee::on_save_button_clicked()
     tab_of_employees[x].last_name = ln.toStdString();
     tab_of_employees[x].age = a.toStdString();
     tab_of_employees[x].job = j.toStdString();
-
+    tab_of_employees[x].name.erase(remove(tab_of_employees[x].name.begin(), tab_of_employees[x].name.end(), ' '), tab_of_employees[x].name.end());
+    tab_of_employees[x].last_name.erase(remove(tab_of_employees[x].last_name.begin(), tab_of_employees[x].last_name.end(), ' '), tab_of_employees[x].last_name.end());
+    tab_of_employees[x].age.erase(remove(tab_of_employees[x].age.begin(), tab_of_employees[x].age.end(), ' '), tab_of_employees[x].age.end());
     if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
     {
-
         outdata.open("data_base.txt",ios::trunc);
         if(!outdata)
         {
@@ -90,6 +89,9 @@ void changing_employee::on_save_button_clicked()
         {
             for(int i =0 ; i < Employee::how_many; i++)
             {
+
+//                tab_of_employees[i].job.erase(remove(tab_of_employees[i].job.begin(), tab_of_employees[i].job.end(), ' '), tab_of_employees[i].job.end());
+
                 outdata << tab_of_employees[i].name << ";";
                 outdata << tab_of_employees[i].last_name << ";";
                 outdata << tab_of_employees[i].age << ";";
@@ -120,4 +122,83 @@ void changing_employee::on_delete_all_button_clicked()
     msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No );
     msg.setDefaultButton(QMessageBox::No);
     int choice = msg.exec();
+    switch (choice)
+    {
+        case  QMessageBox::Yes:
+        {
+            remove("data_base.txt");
+            msg.setWindowTitle("INFORMATION");
+            msg.information(nullptr, "Information", "data base succesfully deleted");
+            close();
+            break;
+
+        }
+        case  QMessageBox::No:
+        {
+            break;
+        }
+    }
+}
+
+void changing_employee::on_delete_button_clicked()
+{
+    msg.setText("Are you sure");
+    msg.setWindowTitle("deleting employee");
+    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No );
+    msg.setDefaultButton(QMessageBox::No);
+    int choice = msg.exec();
+    switch (choice)
+    {
+        case  QMessageBox::Yes:
+        {
+            QString id = ui->search->toPlainText();
+            int x = id.toInt();
+            ofstream data;
+            stringstream a;
+            data.open("data_base.txt");
+            a << data.rdbuf();
+
+            int occur= 0,beginingOfString=0, endOfString=0;
+            string temp = a.str();
+            cout << " Temp " << temp;
+            //brute force method
+            for (unsigned int i = 0; i < temp.size(); i++)
+            {
+                    if (temp[i] == ';')
+                    {
+                        occur++;
+                    }
+                    if (occur == x*4)  beginingOfString = occur + 1;
+                    else if(occur == (x*4) + 3)
+                    {
+                        endOfString = occur;
+                        break;
+                    }
+             }
+            string p1,p2;
+            p1 =temp.substr(0,beginingOfString);
+            cout << "p1 " << beginingOfString << " endof s" << endOfString;
+
+            p2 = temp.substr(endOfString,a.str().size());
+             cout << "p12 " << p2;
+            p1 += p2;
+            a.str() = p1;
+            data << p1;
+            cout << p1;
+            data.close();
+
+
+
+
+            msg.setWindowTitle("INFORMATION");
+            msg.information(nullptr, "Information", "employee deleted");
+            close();
+            break;
+
+        }
+        case  QMessageBox::No:
+        {
+            break;
+        }
+    }
 }
