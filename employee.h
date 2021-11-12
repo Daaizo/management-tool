@@ -6,8 +6,6 @@
 using namespace std;
 class Employee
 {
-
-
     public:
         static int how_many ;
         static void count_employees();
@@ -20,9 +18,6 @@ class Employee
         string name;
         string last_name;
         string job;
-        string id;
-
-
 
 };
 
