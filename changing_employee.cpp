@@ -75,9 +75,7 @@ void changing_employee::on_save_button_clicked()
     tab_of_employees[x].last_name = ln.toStdString();
     tab_of_employees[x].age = a.toStdString();
     tab_of_employees[x].job = j.toStdString();
-    tab_of_employees[x].name.erase(remove(tab_of_employees[x].name.begin(), tab_of_employees[x].name.end(), ' '), tab_of_employees[x].name.end());
-    tab_of_employees[x].last_name.erase(remove(tab_of_employees[x].last_name.begin(), tab_of_employees[x].last_name.end(), ' '), tab_of_employees[x].last_name.end());
-    tab_of_employees[x].age.erase(remove(tab_of_employees[x].age.begin(), tab_of_employees[x].age.end(), ' '), tab_of_employees[x].age.end());
+
     if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
     {
         outdata.open("data_base.txt",ios::trunc);
@@ -90,8 +88,11 @@ void changing_employee::on_save_button_clicked()
             for(int i =0 ; i < Employee::how_many; i++)
             {
 
-//                tab_of_employees[i].job.erase(remove(tab_of_employees[i].job.begin(), tab_of_employees[i].job.end(), ' '), tab_of_employees[i].job.end());
 
+                deleteSpaces(tab_of_employees[i].name);
+                deleteSpaces(tab_of_employees[i].last_name);
+                deleteSpaces(tab_of_employees[i].age);
+                deleteSpaces(tab_of_employees[i].job);
                 outdata << tab_of_employees[i].name << ";";
                 outdata << tab_of_employees[i].last_name << ";";
                 outdata << tab_of_employees[i].age << ";";
@@ -201,4 +202,39 @@ void changing_employee::on_delete_button_clicked()
             break;
         }
     }
+}
+void changing_employee::deleteSpaces(string &a)
+{
+
+    int frontCounter = -1, backCounter = 1 ;
+    for(unsigned int i = 0; i < a.size();i++)
+    {
+        if(isspace(a[0]))
+        {
+            while(isspace(a[i]))
+            {
+
+                i++;
+                frontCounter++;
+            }
+            if(frontCounter != -1)
+            {
+                a = a.substr(frontCounter + 1 );
+            }
+        }
+        while(isspace(a[i]))
+        {
+            backCounter++;
+            i++;
+        }
+        if(backCounter >= 2)
+        {
+            string temp = a.substr(0,i - backCounter);
+            a = temp + " "+ a.substr(i);
+            backCounter = 0;
+        }
+        else backCounter = 0;
+      }
+
+
 }

@@ -17,13 +17,15 @@ public:
     ~changing_employee();
     Employee *tab_of_employees;
     QMessageBox msg;
-
+    static void deleteSpaces(string &);
 private slots:
     void on_search_button_clicked();
 
     void on_save_button_clicked();
 
     void on_delete_all_button_clicked();
+
+    void on_delete_button_clicked();
 
 private:
     Ui::changing_employee *ui;
