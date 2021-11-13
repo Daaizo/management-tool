@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "ui_showing_employee.h"
+#include <QMessageBox>
 namespace Ui {
 class showing_employee;
 }
@@ -10,6 +11,7 @@ class showing_employee;
 class showing_employee : public QDialog
 {
     Q_OBJECT
+    QMessageBox msg;
 
 public:
     explicit showing_employee(QWidget *parent = nullptr);

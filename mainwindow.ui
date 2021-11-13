@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>907</width>
-    <height>589</height>
+    <height>524</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,21 @@
    <iconset>
     <normaloff>icon.gif</normaloff>icon.gif</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+   background-color:rgb(74, 122, 255);
+}
+
+QPushButton:hover {
+    background-color:rgb(139, 166, 255);
+}
+</string>
+   </property>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -35,6 +49,9 @@
       <family>Snap ITC</family>
       <pointsize>36</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Add new employee</string>
@@ -55,6 +72,9 @@
       <pointsize>36</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Change existing data</string>
     </property>
@@ -73,6 +93,9 @@
       <family>Snap ITC</family>
       <pointsize>36</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Show all employees</string>
@@ -105,24 +128,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt; font-weight:600; color:#ffffff;&quot;&gt;THE EMPLOYEEER - &lt;/span&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;your management tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>907</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menumanaging_tool">
-    <property name="title">
-     <string>options</string>
-    </property>
-    <addaction name="actionExit"/>
-   </widget>
-   <addaction name="menumanaging_tool"/>
   </widget>
   <action name="actionExit">
    <property name="text">

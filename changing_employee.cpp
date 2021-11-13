@@ -5,10 +5,14 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <string>
 changing_employee::changing_employee(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::changing_employee)
 {
+     this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
+    //this->setFixedSize(500,400);
+    //this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
     ui->setupUi(this);
     Employee::count_employees();
     tab_of_employees = new Employee[Employee::how_many];
@@ -154,48 +158,66 @@ void changing_employee::on_delete_button_clicked()
         {
             QString id = ui->search->toPlainText();
             int x = id.toInt();
-            ofstream data;
-            stringstream a;
-            data.open("data_base.txt");
-            a << data.rdbuf();
-
-            int occur= 0,beginingOfString=0, endOfString=0;
-            string temp = a.str();
-            cout << " Temp " << temp;
-            //brute force method
-            for (unsigned int i = 0; i < temp.size(); i++)
+            if(!id.toStdString().empty())
             {
-                    if (temp[i] == ';')
-                    {
-                        occur++;
-                    }
-                    if (occur == x*4)  beginingOfString = occur + 1;
-                    else if(occur == (x*4) + 3)
-                    {
-                        endOfString = occur;
-                        break;
-                    }
-             }
-            string p1,p2;
-            p1 =temp.substr(0,beginingOfString);
-            cout << "p1 " << beginingOfString << " endof s" << endOfString;
+            ifstream data;
+            ofstream outdata;
+            stringstream buff;
+            int found =0,count = 0;;
+            if(Employee::how_many == 1 && x == 0)
+            {
+                outdata.open("data_base.txt");
+                close();
+                break;
+            }
 
-            p2 = temp.substr(endOfString,a.str().size());
-             cout << "p12 " << p2;
-            p1 += p2;
-            a.str() = p1;
-            data << p1;
-            cout << p1;
-            data.close();
+            data.open("data_base.txt",ios::out);
+            if(!data)
+            {
+                std::cout << " ERROR" ;
+            }
+            else
+            {
+                buff << data.rdbuf(); // all data in buff
+                data.close();
+            }
+            string temp,a = buff.str();
+            if(a.empty())
+            {
+                msg.information(nullptr, "Information", "data base is empty");
+                break;
+            }
+            while(count != x*4)
+            {
+                  found = a.find(';',found + 1);
+                  count++;
 
+            }
+            temp = a.substr(0,found);
+            for(unsigned int i = 0; i < 4;i++)
+            {
+                found = a.find(';',found + 1);
+            }
+            temp += a.substr(found);
+            outdata.open("data_base.txt",ios::out);
+            if(!data)
+            {
+                std::cout << " ERROR" ;
+            }
+            else
+            {
+                if(x == 0) outdata << a.substr(found+1);
+                else  outdata << temp;
 
-
+               outdata.close();
+            }
 
             msg.setWindowTitle("INFORMATION");
             msg.information(nullptr, "Information", "employee deleted");
             close();
             break;
 
+            }
         }
         case  QMessageBox::No:
         {
@@ -227,11 +249,16 @@ void changing_employee::deleteSpaces(string &a)
             backCounter++;
             i++;
         }
-        if(backCounter >= 2)
+        if(backCounter >= 2 && i != a.size())
         {
             string temp = a.substr(0,i - backCounter);
             a = temp + " "+ a.substr(i);
             backCounter = 0;
+        }
+        else if(backCounter >= 1 && i >= a.size())
+        {
+            a = a.substr(0,i - backCounter);
+            backCounter =0 ;
         }
         else backCounter = 0;
       }

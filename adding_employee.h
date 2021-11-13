@@ -3,8 +3,10 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <string>
+#include <changing_employee.h>
 namespace Ui {
-class Adding_employee;
+class Adding_employee ;
 }
 
 class Adding_employee : public QDialog

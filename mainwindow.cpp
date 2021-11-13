@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setStyleSheet(" border-style: outset; border-radius: 5px;background: rgb(74,89,98);   color: white;  text-align: left; padding-left: 5px; border-bottom: 1px solid black;");
+
+    this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
     this->setFixedSize(907,589);
 
 

@@ -47,13 +47,18 @@
         <height>573</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+font-size : 30px;}</string>
+      </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="1">
         <widget class="QLabel" name="id">
          <property name="font">
           <font>
            <family>Papyrus</family>
-           <pointsize>14</pointsize>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="focusPolicy">
@@ -87,7 +92,7 @@
          <property name="font">
           <font>
            <family>Papyrus</family>
-           <pointsize>14</pointsize>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="focusPolicy">
@@ -118,7 +123,7 @@
          <property name="font">
           <font>
            <family>Papyrus</family>
-           <pointsize>14</pointsize>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="focusPolicy">
@@ -149,7 +154,7 @@
          <property name="font">
           <font>
            <family>Papyrus</family>
-           <pointsize>14</pointsize>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="focusPolicy">
@@ -180,7 +185,7 @@
          <property name="font">
           <font>
            <family>Papyrus</family>
-           <pointsize>14</pointsize>
+           <pointsize>-1</pointsize>
           </font>
          </property>
          <property name="focusPolicy">
