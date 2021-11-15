@@ -34,7 +34,7 @@ showing_employee::showing_employee(QWidget *parent) :
             ui->last_name->setText(ln);
             ui->age->setText(a);
             ui->job->setText(j);
-            ui->job->setFixedWidth(300);
+            ui->job->setFixedWidth(340);
     }
     else
     {

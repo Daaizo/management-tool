@@ -13,6 +13,7 @@ changing_employee::changing_employee(QWidget *parent) :
      this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
     //this->setFixedSize(500,400);
     //this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
+    this->setFixedSize(609,391);
     ui->setupUi(this);
     Employee::count_employees();
     tab_of_employees = new Employee[Employee::how_many];
@@ -70,6 +71,7 @@ void changing_employee::on_save_button_clicked()
 
     QString n,ln,a,j;
     ofstream outdata;
+
     n = ui->name->toPlainText();
     ln = ui->last_name->toPlainText();
     a = ui->age->toPlainText();
@@ -80,12 +82,13 @@ void changing_employee::on_save_button_clicked()
     tab_of_employees[x].age = a.toStdString();
     tab_of_employees[x].job = j.toStdString();
 
-    if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
+    if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty()  )
     {
         outdata.open("data_base.txt",ios::trunc);
         if(!outdata)
         {
             msg.critical(nullptr, "ERROR", "there was an error with data base");
+            close();
         }
         else
         {
