@@ -28,7 +28,7 @@ void Employee::count_employees()
     string line;
     ifstream data;
     stringstream buff, temp;
-     data.open("data_base.txt");
+     data.open("data_base.txt",ios::out);
     if(!data)
     {
         std::cout << " ERROR" ;
@@ -50,13 +50,8 @@ void Employee::count_employees()
 
 void Employee::load_employee(Employee* &tab)
 {
-
     ifstream data;
-
-   // tab = new Employee[2];
     stringstream buff;
-   // tab =  new Employee;
-
     data.open("data_base.txt");
     if(!data)
     {
@@ -73,8 +68,6 @@ void Employee::load_employee(Employee* &tab)
     string var;
     for(auto i : buff.str())
     {
-       // cout << i << " ";
-
         if(i == ';')
         {
             temp++;
@@ -82,14 +75,12 @@ void Employee::load_employee(Employee* &tab)
             {
                 case 1:
                 {
-                    tab[temp2].name = var;
-                  //  cout <<" name : " << tab[temp2].name << endl;
+                    tab[temp2].name = var; 
                     break;
                 }
                 case 2:
                 {
                     tab[temp2].last_name = var;
-                 //  cout << " l n " << tab[temp2].last_name << endl;
                     break;
                 }
                 case 3:
@@ -100,24 +91,15 @@ void Employee::load_employee(Employee* &tab)
                 case 4:
                 {
                     tab[temp2].job = var;
-                //  cout << "job :  " << tab[temp2].job << endl;
                     temp = 0;
                     temp2++;
                     break;
                 }
-
-
-
             }
-
-
-
             var = " ";
-
         }
         else var += i;
     }
-
 }
 
 

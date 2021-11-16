@@ -5,17 +5,17 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <string>
 changing_employee::changing_employee(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::changing_employee)
 {
+    this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
+    this->setFixedSize(609,391);
     ui->setupUi(this);
     Employee::count_employees();
     tab_of_employees = new Employee[Employee::how_many];
     tab_of_employees->load_employee(tab_of_employees);
-    msg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-
-
 }
 
 changing_employee::~changing_employee()
@@ -61,27 +61,27 @@ void changing_employee::on_save_button_clicked()
 {
 
     QString id = ui->search->toPlainText();
-
-    int x = id.toInt();
-
     QString n,ln,a,j;
-    ofstream outdata;
+    int x = id.toInt();
     n = ui->name->toPlainText();
     ln = ui->last_name->toPlainText();
     a = ui->age->toPlainText();
     j = ui->job->toPlainText();
 
-    tab_of_employees[x].name =  n.toStdString() ;
-    tab_of_employees[x].last_name = ln.toStdString();
-    tab_of_employees[x].age = a.toStdString();
-    tab_of_employees[x].job = j.toStdString();
-
-    if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty())
+    if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty()  )
     {
+
+        ofstream outdata;
+        tab_of_employees[x].name =  n.toStdString() ;
+        tab_of_employees[x].last_name = ln.toStdString();
+        tab_of_employees[x].age = a.toStdString();
+        tab_of_employees[x].job = j.toStdString();
+
         outdata.open("data_base.txt",ios::trunc);
         if(!outdata)
         {
             msg.critical(nullptr, "ERROR", "there was an error with data base");
+            close();
         }
         else
         {
@@ -102,17 +102,13 @@ void changing_employee::on_save_button_clicked()
             msg.setWindowTitle("INFORMATION");
             msg.information(nullptr, "Information", "data succesfully changed");
             close();
-
         }
     }
     else
     {
        msg.setWindowTitle("ERROR");
        msg.critical(nullptr, "Error" ,"Fill all blanks before saving");
-
     }
-
-
 }
 
 void changing_employee::on_delete_all_button_clicked()
@@ -132,7 +128,6 @@ void changing_employee::on_delete_all_button_clicked()
             msg.information(nullptr, "Information", "data base succesfully deleted");
             close();
             break;
-
         }
         case  QMessageBox::No:
         {
@@ -154,48 +149,66 @@ void changing_employee::on_delete_button_clicked()
         {
             QString id = ui->search->toPlainText();
             int x = id.toInt();
-            ofstream data;
-            stringstream a;
-            data.open("data_base.txt");
-            a << data.rdbuf();
-
-            int occur= 0,beginingOfString=0, endOfString=0;
-            string temp = a.str();
-            cout << " Temp " << temp;
-            //brute force method
-            for (unsigned int i = 0; i < temp.size(); i++)
+            if(!id.toStdString().empty())
             {
-                    if (temp[i] == ';')
-                    {
-                        occur++;
-                    }
-                    if (occur == x*4)  beginingOfString = occur + 1;
-                    else if(occur == (x*4) + 3)
-                    {
-                        endOfString = occur;
-                        break;
-                    }
-             }
-            string p1,p2;
-            p1 =temp.substr(0,beginingOfString);
-            cout << "p1 " << beginingOfString << " endof s" << endOfString;
+            ifstream data;
+            ofstream outdata;
+            stringstream buff;
+            int found =0,count = 0;;
+            if(Employee::how_many == 1 && x == 0)
+            {
+                outdata.open("data_base.txt");
+                close();
+                break;
+            }
 
-            p2 = temp.substr(endOfString,a.str().size());
-             cout << "p12 " << p2;
-            p1 += p2;
-            a.str() = p1;
-            data << p1;
-            cout << p1;
-            data.close();
+            data.open("data_base.txt",ios::out);
+            if(!data)
+            {
+                std::cout << " ERROR" ;
+            }
+            else
+            {
+                buff << data.rdbuf(); // all data in buff
+                data.close();
+            }
+            string temp,a = buff.str();
+            if(a.empty())
+            {
+                msg.information(nullptr, "Information", "data base is empty");
+                break;
+            }
+            while(count != x*4)
+            {
+                  found = a.find(';',found + 1);
+                  count++;
 
+            }
+            temp = a.substr(0,found);
+            for(unsigned int i = 0; i < 4;i++)
+            {
+                found = a.find(';',found + 1);
+            }
+            temp += a.substr(found);
+            outdata.open("data_base.txt",ios::out);
+            if(!data)
+            {
+                std::cout << " ERROR" ;
+            }
+            else
+            {
+                if(x == 0) outdata << a.substr(found+1);
+                else  outdata << temp;
 
-
+               outdata.close();
+            }
 
             msg.setWindowTitle("INFORMATION");
             msg.information(nullptr, "Information", "employee deleted");
             close();
             break;
 
+            }
         }
         case  QMessageBox::No:
         {
@@ -227,14 +240,17 @@ void changing_employee::deleteSpaces(string &a)
             backCounter++;
             i++;
         }
-        if(backCounter >= 2)
+        if(backCounter >= 2 && i != a.size())
         {
             string temp = a.substr(0,i - backCounter);
             a = temp + " "+ a.substr(i);
             backCounter = 0;
         }
+        else if(backCounter >= 1 && i >= a.size())
+        {
+            a = a.substr(0,i - backCounter);
+            backCounter =0 ;
+        }
         else backCounter = 0;
       }
-
-
 }

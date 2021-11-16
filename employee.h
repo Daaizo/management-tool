@@ -18,7 +18,6 @@ class Employee
         string name;
         string last_name;
         string job;
-
 };
 
 #endif // EMPLOYEE_H
