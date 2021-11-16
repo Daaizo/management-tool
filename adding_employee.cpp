@@ -7,8 +7,6 @@ Adding_employee::Adding_employee(QWidget *parent) :
     ui(new Ui::Adding_employee)
 {
     ui->setupUi(this);
-
-    //this->setStyleSheet(" border: 1px solid blue;border-radius: 3px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; ");
     this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
     this->setFixedSize(482,324);
     ui->Job->addItem("Scheduler" );
@@ -22,7 +20,6 @@ Adding_employee::Adding_employee(QWidget *parent) :
 void Adding_employee::show_Error_msg()
 {
     msg.critical(nullptr, "Error" ,"Fill all blanks before saving");
-   // msg.setWindowIcon();
 }
 Adding_employee::~Adding_employee()
 {
@@ -60,13 +57,11 @@ void Adding_employee::on_Save_clicked()
         }
         else
         {
-
             outdata  << n.toUtf8().constData() << ";";
             outdata << ln.toUtf8().constData() << ";";
             outdata << a.toUtf8().constData() << ";";
             outdata << j.toUtf8().constData() << ";";
             outdata.close();
-
         }
         close();
     }

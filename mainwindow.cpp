@@ -6,11 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
     this->setFixedSize(907,589);
-
-
 }
 
 
@@ -24,7 +21,6 @@ void MainWindow::on_pushButton_clicked()
 {
     Adding_employee x;
     x.show();
-
     x.exec();
 }
 
@@ -32,7 +28,6 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     showing_employee x;
-
     x.show();
     x.exec();
 }

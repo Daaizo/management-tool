@@ -10,17 +10,12 @@ changing_employee::changing_employee(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::changing_employee)
 {
-     this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
-    //this->setFixedSize(500,400);
-    //this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
+    this->setStyleSheet("border: 1px solid blue;border-radius: 3px;border-style: outset;background: rgb(44, 171, 255);    border-radius: 3px; text-align: left; padding-left: 5px; border-bottom: 1px solid black; color: white");
     this->setFixedSize(609,391);
     ui->setupUi(this);
     Employee::count_employees();
     tab_of_employees = new Employee[Employee::how_many];
     tab_of_employees->load_employee(tab_of_employees);
-    msg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-
-
 }
 
 changing_employee::~changing_employee()
@@ -66,24 +61,22 @@ void changing_employee::on_save_button_clicked()
 {
 
     QString id = ui->search->toPlainText();
-
-    int x = id.toInt();
-
     QString n,ln,a,j;
-    ofstream outdata;
-
+    int x = id.toInt();
     n = ui->name->toPlainText();
     ln = ui->last_name->toPlainText();
     a = ui->age->toPlainText();
     j = ui->job->toPlainText();
 
-    tab_of_employees[x].name =  n.toStdString() ;
-    tab_of_employees[x].last_name = ln.toStdString();
-    tab_of_employees[x].age = a.toStdString();
-    tab_of_employees[x].job = j.toStdString();
-
     if(!n.isEmpty() && !ln.isEmpty() && !a.isEmpty() && !j.isEmpty()  )
     {
+
+        ofstream outdata;
+        tab_of_employees[x].name =  n.toStdString() ;
+        tab_of_employees[x].last_name = ln.toStdString();
+        tab_of_employees[x].age = a.toStdString();
+        tab_of_employees[x].job = j.toStdString();
+
         outdata.open("data_base.txt",ios::trunc);
         if(!outdata)
         {
@@ -109,17 +102,13 @@ void changing_employee::on_save_button_clicked()
             msg.setWindowTitle("INFORMATION");
             msg.information(nullptr, "Information", "data succesfully changed");
             close();
-
         }
     }
     else
     {
        msg.setWindowTitle("ERROR");
        msg.critical(nullptr, "Error" ,"Fill all blanks before saving");
-
     }
-
-
 }
 
 void changing_employee::on_delete_all_button_clicked()
@@ -139,7 +128,6 @@ void changing_employee::on_delete_all_button_clicked()
             msg.information(nullptr, "Information", "data base succesfully deleted");
             close();
             break;
-
         }
         case  QMessageBox::No:
         {
@@ -265,6 +253,4 @@ void changing_employee::deleteSpaces(string &a)
         }
         else backCounter = 0;
       }
-
-
 }

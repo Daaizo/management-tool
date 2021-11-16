@@ -7,16 +7,11 @@ showing_employee::showing_employee(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::showing_employee)
 {
-
     ui->setupUi(this);
-
     this->setStyleSheet(" border: 2px solid blue;border-radius: 8px;padding: 5px;font-family: Garamond, serif;border-style: outset; background: rgb(44, 171, 255);   color: white;  text-align: left; padding-left: 5px; ");
-    //this->setStyleSheet("background: rgb(74,89,98);   text-align: left; padding-left: 5px;   color: white");
     Employee::count_employees();
     Employee *tab_of_employees = new Employee[Employee::how_many];
-
     tab_of_employees->load_employee(tab_of_employees);
-
     QString id = "ID:\n\n", name = "NAME:\n\n",ln = "LAST NAME:\n\n",a = "AGE:\n\n" ,j="JOB:\n\n";
     if(Employee::how_many)
     {
@@ -41,8 +36,6 @@ showing_employee::showing_employee(QWidget *parent) :
         msg.setWindowTitle("INFORMATION");
         msg.information(nullptr, "Information", "Data base is empty");
     }
-
-
 }
 
 
