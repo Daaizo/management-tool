@@ -1,4 +1,4 @@
-# Management-tool <h2>(PROJECT CAN BE DOWNLOADED AS A ZIP FILE WITH A EXE !! JUST DOWNLOAD AND TRY IT. No additional installation is needed, just unpack and run exe file.)<h2>
+# Management-tool <h2>PROJECT CAN BE DOWNLOADED AS A ZIP FILE WITH A EXE !! JUST DOWNLOAD "Employeeer v1.0.0" from releases section and try it. No additional installation is needed, just unpack and run exe file.<h2>
 I'm trying to create some kind of management tool for people. All stuff is basic, still learning about Qt and OOP in C++.
 The project is simple it allows to add user,change data about each one, delete data base etc. Each record can be found using user's ID. 
 There are error's that remind youser about filling all blanks etc. All things I have done by myself, that's why code is messy and propapbly not optimal but it works. 
